@@ -28,7 +28,9 @@ public class FlowerBucketTest {
         // Flower flower = new Rose();
         Flower flower = new Flower();
         flower.setFlowerType(FlowerType.ROSE);
+        // CHECKSTYLE:OFF MagicNumber
         flower.setPrice(10);
+        // CHECKSTYLE:ON MagicNumber
         FlowerPack flowerPack = new FlowerPack(flower, quantity);
         flowerBucket.add(flowerPack);
         Assertions.assertEquals(price * quantity, flowerBucket.getPrice());

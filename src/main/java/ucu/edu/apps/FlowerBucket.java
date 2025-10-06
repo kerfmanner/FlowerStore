@@ -13,8 +13,8 @@ public class FlowerBucket {
         }
         flowerPacks.add(flowerPack);
     }
-    
-    public double getPrice(){
+
+    public double getPrice() {
         double price = 0;
         for (FlowerPack i : flowerPacks) {
             price += i.getPrice();
