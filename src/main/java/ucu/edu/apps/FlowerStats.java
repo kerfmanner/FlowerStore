@@ -19,15 +19,16 @@ public class FlowerStats {
     }
 
     public boolean matching(FlowerStats stats) {
-        if (flowerType != null  && !flowerType.equals(stats.flowerType)) {
+        if (flowerType != null && !flowerType.equals(stats.flowerType)) {
             return false;
         }
-        if (color != null  && !color.equals(stats.color)) {
+        if (color != null && !color.equals(stats.color)) {
             return false;
         }
         return true;
     }
-    public boolean matching(FlowerPack pack){
+
+    public boolean matching(FlowerPack pack) {
         return this.matching(pack.getStats());
     }
 }

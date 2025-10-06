@@ -56,7 +56,9 @@ public class StoreTest {
 
         Assertions.assertNotNull(result);
         Assertions.assertEquals(
-                1, result.getFlowerPacks().size(), "Should find only rose pack");
+                1,
+                result.getFlowerPacks().size(),
+                "Should be only rose pack");
         Assertions.assertEquals(
                 REQUEST_THREE,
                 result.getFlowerPacks().get(0).getCount(),
@@ -69,12 +71,14 @@ public class StoreTest {
         FlowerBucket result = store.search(stats, REQUEST_FOUR);
 
         Assertions.assertEquals(1, result.getFlowerPacks().size());
-        Assertions.assertEquals(REQUEST_FOUR, result.getFlowerPacks().get(0).getCount());
+        Assertions.assertEquals(
+                REQUEST_FOUR,
+                result.getFlowerPacks().get(0).getCount());
 
-        FlowerPack originalPack = store.getStoreFlowerBucket().getFlowerPacks().get(0);
+        FlowerBucket Bucket = store.getStoreFlowerBucket();
         Assertions.assertEquals(
                 EXPECTED_SIX_LEFT,
-                originalPack.getCount(),
+                Bucket.getFlowerPacks().get(0).getCount(),
                 "Store pack should now have 6 left");
     }
 
@@ -84,7 +88,9 @@ public class StoreTest {
         FlowerBucket result = store.search(tulipStats, REQUEST_FIVE);
 
         Assertions.assertEquals(1, result.getFlowerPacks().size());
-        Assertions.assertEquals(REQUEST_FIVE, result.getFlowerPacks().get(0).getCount());
+        Assertions.assertEquals(
+                REQUEST_FIVE,
+                result.getFlowerPacks().get(0).getCount());
         Assertions.assertEquals(
                 FlowerType.TULIP,
                 result.getFlowerPacks().get(0).getFlower().getFlowerType());
