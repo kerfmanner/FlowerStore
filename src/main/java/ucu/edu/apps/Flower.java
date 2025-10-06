@@ -1,4 +1,4 @@
-package ucu.edu.apps2025;
+package ucu.edu.apps;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

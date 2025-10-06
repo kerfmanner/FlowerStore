@@ -1,4 +1,4 @@
-package ucu.edu.apps2025;
+package ucu.edu.apps;
 
 public class FlowerPack {
     private Flower flower;
