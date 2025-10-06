@@ -16,7 +16,7 @@ public class FlowerStats {
         color = null;
         flowerType = null;
     }
-    
+
     public FlowerStats(FlowerStats stats) {
 
         this.flowerType = stats.flowerType;

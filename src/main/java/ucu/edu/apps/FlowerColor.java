@@ -1,7 +1,7 @@
 package ucu.edu.apps;
 
 public enum FlowerColor {
-    RED("#FF00000"), GREEN("#008000"), BLUE("#0000FF"),
+    RED("#FF0000"), GREEN("#008000"), BLUE("#0000FF"),
     YELLOW("#F0F000");
 
     private String hexColor;

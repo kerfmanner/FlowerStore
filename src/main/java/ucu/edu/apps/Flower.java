@@ -2,20 +2,24 @@ package ucu.edu.apps;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 @ToString
 public class Flower {
 
-    private FlowerStats stats = new FlowerStats();
+    private FlowerStats stats;
     private double price;
     private double sepalLength;
+
+    public Flower() {
+        stats = new FlowerStats();
+        price = 0.0;
+        sepalLength = 0.0;
+    }
 
     public Flower(Flower flower) {
         sepalLength = flower.sepalLength;

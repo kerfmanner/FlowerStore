@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 public class FlowerBucket {
 
-    private List<FlowerPack> flowerPacks = new ArrayList<>();
+    private List<FlowerPack> flowerPacks;
 
     public void add(FlowerPack flowerPack) {
         if (flowerPacks == null) {

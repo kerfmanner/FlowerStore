@@ -19,6 +19,7 @@ public class FlowerBucketTest {
 
     @BeforeEach
     public void init() {
+        System.out.println("SUKIIIIIIIIIIIIIIII");
         flowerBucket = new FlowerBucket();
     }
 
@@ -29,9 +30,7 @@ public class FlowerBucketTest {
         // Flower flower = new Rose();
         Flower flower = new Flower();
         flower.setFlowerType(FlowerType.ROSE);
-// CHECKSTYLE:OFF
         flower.setPrice(TEST_PRICE);
-// CHECKSTYLE:ON
         FlowerPack flowerPack = new FlowerPack(flower, quantity);
         flowerBucket.add(flowerPack);
         Assertions.assertEquals(price * quantity, flowerBucket.getPrice());
