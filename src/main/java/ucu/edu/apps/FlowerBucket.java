@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
 public class FlowerBucket {
 
     private List<FlowerPack> flowerPacks;
@@ -19,6 +18,10 @@ public class FlowerBucket {
         flowerPacks.add(flowerPack);
     }
 
+    public FlowerBucket(){
+        flowerPacks = new ArrayList<FlowerPack>();
+    }
+    
     public double getPrice() {
         double price = 0;
         for (FlowerPack i : flowerPacks) {
