@@ -15,24 +15,24 @@ public class FlowerPack {
         this.count = count;
     }
 
-    public FlowerPack(FlowerPack pack, int amount){
+    public FlowerPack(FlowerPack pack, int amount) {
         flower = pack.getFlower();
         pack.reduceCount(amount);
         count = amount;
-        }
+    }
 
     public double getPrice() {
         return flower.getPrice() * count;
     }
 
-    public FlowerStats getStats(){
+    public FlowerStats getStats() {
         return flower.getStats();
     }
 
     @SneakyThrows
     public void reduceCount(int amount) {
         if (amount > this.count) {
-            throw new IllegalArgumentException("Cannot reduce by more than current count: " + this.count);
+            throw new IllegalArgumentException("Cannot reduce into negative.");
         }
         this.count -= amount;
     }

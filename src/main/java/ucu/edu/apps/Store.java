@@ -11,14 +11,14 @@ public class Store {
     }
 
     public FlowerBucket search(FlowerStats stats, int amount) {
-
+        int needed = amount;
         FlowerBucket requestedBucket = new FlowerBucket();
         for (FlowerPack pack : storeFlowerBucket.getFlowerPacks()) {
             if (stats.matching(pack)) {
 
-                int count = Math.min(pack.getCount(), amount);
+                int count = Math.min(pack.getCount(), needed);
                 requestedBucket.add(new FlowerPack(pack, count));
-                amount -= count;
+                needed -= count;
             }
             if (amount == 0) {
                 break;

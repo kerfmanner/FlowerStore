@@ -1,10 +1,30 @@
-import ucu.edu.apps.*;
+import ucu.edu.apps.Flower;
+import ucu.edu.apps.FlowerBucket;
+import ucu.edu.apps.FlowerPack;
+import ucu.edu.apps.FlowerStats;
+import ucu.edu.apps.Store;
+import ucu.edu.apps.FlowerType;
+import ucu.edu.apps.FlowerColor;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
 public class StoreTest {
+    private static final double ROSE_SEPAL_LENGTH = 5.0;
+    private static final double TULIP_SEPAL_LENGTH = 4.0;
+    private static final double CHAMOMILE_SEPAL_LENGTH = 3.5;
+
+    private static final int ROSE_PRICE = 10;
+    private static final int TULIP_PRICE = 8;
+    private static final int ROSE_COUNT = 10;
+    private static final int TULIP_COUNT = 5;
+    private static final int REQUEST_THREE = 3;
+    private static final int REQUEST_FOUR = 4;
+    private static final int REQUEST_FIVE = 5;
+    private static final int REQUEST_TWENTY = 20;
+    private static final int EXPECTED_SIX_LEFT = 6;
+
     private Store store;
     private Flower rose;
     private Flower tulip;
@@ -15,59 +35,69 @@ public class StoreTest {
 
         rose = new Flower();
         rose.setFlowerType(FlowerType.ROSE);
-        rose.setPrice(10);
+        rose.setPrice(ROSE_PRICE);
         rose.setColor(FlowerColor.RED);
-        rose.setSepalLength(5.0);
+        rose.setSepalLength(ROSE_SEPAL_LENGTH);
 
         tulip = new Flower();
         tulip.setFlowerType(FlowerType.TULIP);
-        tulip.setPrice(8);
+        tulip.setPrice(TULIP_PRICE);
         tulip.setColor(FlowerColor.YELLOW);
-        tulip.setSepalLength(4.0);
+        tulip.setSepalLength(TULIP_SEPAL_LENGTH);
 
-        store.addFlowerPack(new FlowerPack(rose, 10));
-        store.addFlowerPack(new FlowerPack(tulip, 5));
+        store.addFlowerPack(new FlowerPack(rose, ROSE_COUNT));
+        store.addFlowerPack(new FlowerPack(tulip, TULIP_COUNT));
     }
 
     @Test
     public void testAddFlowerPack() {
         FlowerStats stats = rose.getStats();
-        FlowerBucket result = store.search(stats, 3);
+        FlowerBucket result = store.search(stats, REQUEST_THREE);
 
         Assertions.assertNotNull(result);
-        Assertions.assertEquals(1, result.getFlowerPacks().size(), "Should find only rose pack");
-        Assertions.assertEquals(3, result.getFlowerPacks().get(0).getCount(), "Returned pack should contain 3 roses");
+        Assertions.assertEquals(
+                1, result.getFlowerPacks().size(), "Should find only rose pack");
+        Assertions.assertEquals(
+                REQUEST_THREE,
+                result.getFlowerPacks().get(0).getCount(),
+                "Returned pack should contain 3 roses");
     }
 
     @Test
     public void testSearchReducesStoreCount() {
         FlowerStats stats = rose.getStats();
-
-        FlowerBucket result = store.search(stats, 4);
+        FlowerBucket result = store.search(stats, REQUEST_FOUR);
 
         Assertions.assertEquals(1, result.getFlowerPacks().size());
-        Assertions.assertEquals(4, result.getFlowerPacks().get(0).getCount());
+        Assertions.assertEquals(REQUEST_FOUR, result.getFlowerPacks().get(0).getCount());
 
         FlowerPack originalPack = store.getStoreFlowerBucket().getFlowerPacks().get(0);
-        Assertions.assertEquals(6, originalPack.getCount(), "Store pack should now have 6 left");
+        Assertions.assertEquals(
+                EXPECTED_SIX_LEFT,
+                originalPack.getCount(),
+                "Store pack should now have 6 left");
     }
 
     @Test
     public void testSearchMultipleTypes() {
         FlowerStats tulipStats = tulip.getStats();
-        FlowerBucket result = store.search(tulipStats, 5);
+        FlowerBucket result = store.search(tulipStats, REQUEST_FIVE);
 
         Assertions.assertEquals(1, result.getFlowerPacks().size());
-        Assertions.assertEquals(5, result.getFlowerPacks().get(0).getCount());
-        Assertions.assertEquals(FlowerType.TULIP, result.getFlowerPacks().get(0).getFlower().getFlowerType());
+        Assertions.assertEquals(REQUEST_FIVE, result.getFlowerPacks().get(0).getCount());
+        Assertions.assertEquals(
+                FlowerType.TULIP,
+                result.getFlowerPacks().get(0).getFlower().getFlowerType());
     }
 
     @Test
     public void testSearchMoreThanAvailable() {
         FlowerStats stats = rose.getStats();
-        FlowerBucket result = store.search(stats, 20);
+        FlowerBucket result = store.search(stats, REQUEST_TWENTY);
 
-        Assertions.assertEquals(10, result.getFlowerPacks().get(0).getCount(),
+        Assertions.assertEquals(
+                ROSE_COUNT,
+                result.getFlowerPacks().get(0).getCount(),
                 "Should return only available 10 roses");
     }
 
@@ -76,12 +106,13 @@ public class StoreTest {
         Flower randomFlower = new Flower();
         randomFlower.setFlowerType(FlowerType.CHAMOMILE);
         randomFlower.setColor(FlowerColor.BLUE);
-        randomFlower.setSepalLength(3.5);
+        randomFlower.setSepalLength(CHAMOMILE_SEPAL_LENGTH);
         FlowerStats nonMatchingStats = randomFlower.getStats();
 
-        FlowerBucket result = store.search(nonMatchingStats, 5);
+        FlowerBucket result = store.search(nonMatchingStats, REQUEST_FIVE);
 
-        Assertions.assertTrue(result.getFlowerPacks().isEmpty(),
+        Assertions.assertTrue(
+                result.getFlowerPacks().isEmpty(),
                 "No matching flowers should be found for non-existing type");
     }
 }
