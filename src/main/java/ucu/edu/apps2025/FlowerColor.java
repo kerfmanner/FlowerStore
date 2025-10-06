@@ -5,11 +5,11 @@ public enum FlowerColor {
 
     private String hexColor;
 
-    FlowerColor(String hexColor){
+    FlowerColor(String hexColor) {
         this.hexColor = hexColor;
     }
 
-    public String toString(){
+    public String toString() {
         return this.hexColor;
     }
 }
