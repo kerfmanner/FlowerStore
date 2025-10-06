@@ -12,7 +12,7 @@ public class FlowerStats {
     private FlowerColor color;
     private FlowerType flowerType;
 
-    public FlowerStats(){
+    public FlowerStats() {
         color = null;
         flowerType = null;
     }

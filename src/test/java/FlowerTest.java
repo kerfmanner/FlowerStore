@@ -28,6 +28,6 @@ public class FlowerTest {
     public void testColor() {
         FlowerColor color = FlowerColor.RED;
         flower.setColor(color);
-        Assertions.assertEquals("#FF0000", flower.getColor());
+        Assertions.assertEquals("#FF0000", flower.getColor().toString());
     }
 }
