@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString
 public class Flower {
 
-    private FlowerStats stats;
+    private FlowerStats stats = new FlowerStats();
     private double price;
     private double sepalLength;
 

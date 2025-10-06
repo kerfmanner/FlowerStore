@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter
 public class FlowerBucket {
 
-    private List<FlowerPack> flowerPacks;
+    private List<FlowerPack> flowerPacks = new ArrayList<>();
 
     public void add(FlowerPack flowerPack) {
         if (flowerPacks == null) {
