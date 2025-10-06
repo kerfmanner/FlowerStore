@@ -1,5 +1,15 @@
 package ucu.edu.apps;
 
 public enum FlowerType {
-    ROSE, TULIP, CHAMOMILE
+    ROSE("rose"), TULIP("tulip"), CHAMOMILE("chamomile");
+
+    private String type;
+
+    FlowerType(String type) {
+        this.type = type;
+    }
+
+    public String toString() {
+        return this.type;
+    }
 }
