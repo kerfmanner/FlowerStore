@@ -75,10 +75,10 @@ public class StoreTest {
                 REQUEST_FOUR,
                 result.getFlowerPacks().get(0).getCount());
 
-        FlowerBucket Bucket = store.getStoreFlowerBucket();
+        FlowerBucket testBucket = store.getStoreFlowerBucket();
         Assertions.assertEquals(
                 EXPECTED_SIX_LEFT,
-                Bucket.getFlowerPacks().get(0).getCount(),
+                testBucket.getFlowerPacks().get(0).getCount(),
                 "Store pack should now have 6 left");
     }
 
