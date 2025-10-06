@@ -3,6 +3,9 @@ package ucu.edu.apps;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Getter;
+
+@Getter
 public class FlowerBucket {
 
     private List<FlowerPack> flowerPacks;
@@ -20,5 +23,9 @@ public class FlowerBucket {
             price += i.getPrice();
         }
         return price;
+    }
+
+    public void clear() {
+        flowerPacks = new ArrayList<FlowerPack>();
     }
 }

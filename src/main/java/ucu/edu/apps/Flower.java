@@ -13,15 +13,29 @@ import lombok.ToString;
 @ToString
 public class Flower {
 
-    private double sepalLength;
-    private FlowerColor color;
+    private FlowerStats stats;
     private double price;
-    private FlowerType flowerType;
+    private double sepalLength;
 
     public Flower(Flower flower) {
-        color = flower.color;
         sepalLength = flower.sepalLength;
         price = flower.price;
-        flowerType = flower.flowerType;
+        stats = new FlowerStats(flower.stats);
+    }
+
+    public void setFlowerType(FlowerType type) {
+        stats.setFlowerType(type);
+    }
+
+    public FlowerType getFlowerType() {
+        return stats.getFlowerType();
+    }
+
+    public void setColor(FlowerColor color) {
+        stats.setColor(color);
+    }
+
+    public FlowerColor getColor() {
+        return stats.getColor();
     }
 }
